@@ -4,11 +4,6 @@ const app = express()
 app.use(express.json())
 let books = []
 
-app.get('/books', (req, res) => {
-    res.status(200).json(books)
-})
-
-
 // POST /books
 app.post('/books', (req, res) => {
     // input
@@ -39,6 +34,19 @@ app.post('/books', (req, res) => {
 
     // output
     res.status(201).json(bookID)
+})
+
+app.get('/books/:id', (req, res) => {
+    //input
+    let id = req.params.id
+
+    let book = {}
+
+    //process
+    book = books[id]
+
+    //output
+    res.status(200).json(book)
 })
 
 const port = 3000
